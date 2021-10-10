@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# comnect
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A web application for displaying events hosted by community memembers.
 
-## Available Scripts
+## Technologies Used:
 
-In the project directory, you can run:
+- Express
+- MongoDB
+- Auth0
+- React
+- Axios
+- Bootstrap & React-BootStrap
+- React Icons
+- React Router
+- uuid (library)
+- date-fns (library)
 
-### `npm start`
+## Learning
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+With this being my first hackathon, this was a worthwhile experience. Overall, this project brought a lot of problems I didn't expect to occur. For one, I was expecting to desing a frontend based applicaiton but ended up needing to learn how to work with backend and connecting the 2. I ended up resorting to the MongoDB tutorial on how to use the MERN stack.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Most of the project was styled using `react-boostrap`. Since I don't use bootstrap that often (in addition to `react-bootstrap`), it took some experimenting to get the looks of the pages.
 
-### `npm test`
+Utilizing Auth0 in my app was surprisingly easy. There was a great tutorial on how to use it with React and in addition, they had a separate tutorial going over how to make protected routes which were crucial in my application for some aspects.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Some Future Features That I Didn't Have Time to Implement/Enough Time to Understand the Documentation
 
-### `npm run build`
+- Allow the organizer of the event to "cancel" an event
+- Add some verification checks on the event form
+- Sort the events on the homepage by "All", "Live", and "Cancelled"
+- Removing events that have passed on the homepage
+- On the user profile, separate their events by "Current", "Past", and "Cancelled"
+- Add tags to the events (gives some info about the event without having to open it)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  - However, don't allow users to edit events that have already passed or been cancelled
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Add labels for events that are "New", "Live", and "Cancelled"
+- Allow users to change their profile information (ie: username, email, password for their Auth0 account - this required the backend to do so which I'm still new at from this experience)
+- Have location verification using Google's map API
+- Display a map of the location where the event will take place (given that it's in-person)
+- Have an option to sort the events by nearest to a given inputted location
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Technical Stuff
 
-### `npm run eject`
+Since this project contains both the frontend & backend, we have to remember to run `npm i` in the root folder of the project and in the `server` folder.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- For the server, I installed `nodemon` globally using `npm i -g nodemon` and `nodemon server` to get the server up and running
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To get the page running, run `npm start` in the root directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Note on Required Environment Variables For the Backend & Frontend
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. In the `server` folder, we need a `config.env` file with:
 
-## Learn More
+   - `ATLAS_URI` containing the filled out URI for your MongoDB cluster
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - `PORT` containing the port number you want to use for the server
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. In the root, we need a `.env` file with:
 
-### Code Splitting
+   - `REACT_APP_AUTH0_DOMAIN` containing the domain for your AUTH0 app
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   - `REACT_APP_AUTH0_CLIENT_ID` containing the client id for your AUTH0 app
