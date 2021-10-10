@@ -1,4 +1,5 @@
 const express = require("express");
+const formatToDateTime = require("../helper/utility");
 
 // eventRoutes is an instance of the express router.
 // We use it to define our routes.
@@ -13,12 +14,12 @@ eventRoutes.route("/").post((req, res) => {
   res.redirect("http://localhost:3000/");
 });
 
-// This section will help you get a list of all the events
+// This section will help you get a list of all the events given they haven't passed alerady
 eventRoutes.route("/events").get(function (req, res) {
   let db_connect = dbo.getDb();
   db_connect
     .collection("events")
-    .find({})
+    .find({ endDate: { $gte: formatToDateTime(new Date()) } })
     .sort({ submitDate: -1 })
     .toArray(function (err, result) {
       if (err) throw err;
@@ -27,11 +28,12 @@ eventRoutes.route("/events").get(function (req, res) {
 });
 
 // This section will help you get a list of all the events a user has created
-eventRoutes.route("/userevents/:id").get(function (req, res) {
+eventRoutes.route("/userevents/:id/:type").get(function (req, res) {
   let db_connect = dbo.getDb();
+  const queryType = req.params.type === "current" ? "$gte" : "$lte";
   db_connect
     .collection("events")
-    .find({ submitterId: req.params.id })
+    .find({ submitterId: req.params.id, endDate: { [queryType]: formatToDateTime(new Date()) } })
     .sort({ submitDate: -1 })
     .toArray(function (err, result) {
       if (err) throw err;

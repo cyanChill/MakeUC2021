@@ -16,3 +16,7 @@ body {
 .card {
   border: 1.5px solid black;
 }
+
+.btnGroup input[type="radio"] {
+  display: none;
+}

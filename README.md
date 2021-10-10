@@ -28,8 +28,7 @@ Utilizing Auth0 in my app was surprisingly easy. There was a great tutorial on h
 - Allow the organizer of the event to "cancel" an event
 - Add some verification checks on the event form
 - Sort the events on the homepage by "All", "Live", and "Cancelled"
-- Removing events that have passed on the homepage
-- On the user profile, separate their events by "Current", "Past", and "Cancelled"
+- On the user profile, add filter for "Cancelled" events
 - Add tags to the events (gives some info about the event without having to open it)
 
   - However, don't allow users to edit events that have already passed or been cancelled

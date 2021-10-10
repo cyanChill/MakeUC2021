@@ -12,13 +12,13 @@ const EventCard = ({ info, edit }) => {
         <Row>
           <Col as={Card.Title}>{eventName}</Col>
           <Col>
-            {!edit ? (
-              <Link to={`/event/${eventId}`}>
-                <FaExternalLinkAlt className="float-end" />
-              </Link>
-            ) : (
+            {edit ? (
               <Link to={`/form/edit/${eventId}`}>
                 <FaEdit className="float-end" />
+              </Link>
+            ) : edit === false ? null : (
+              <Link to={`/event/${eventId}`}>
+                <FaExternalLinkAlt className="float-end" />
               </Link>
             )}
           </Col>
