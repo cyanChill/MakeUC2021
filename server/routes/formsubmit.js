@@ -8,10 +8,12 @@ const eventRoutes = express.Router();
 // This will help us connect to the database
 const dbo = require("../db/conn");
 
-// This help convert the id from string to ObjectId for the _id.
-const ObjectId = require("mongodb").ObjectId;
+// Redirect Post Request to Home Page of Applicaton to hide form fields in URL
+eventRoutes.route("/").post((req, res) => {
+  res.redirect("http://localhost:3000/");
+});
 
-// This section will help you get a list of all the records.
+// This section will help you get a list of all the events
 eventRoutes.route("/events").get(function (req, res) {
   let db_connect = dbo.getDb();
   db_connect
@@ -24,7 +26,7 @@ eventRoutes.route("/events").get(function (req, res) {
     });
 });
 
-// This section will help you get a list of all the records.
+// This section will help you get a list of all the events a user has created
 eventRoutes.route("/userevents/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   db_connect
@@ -37,7 +39,7 @@ eventRoutes.route("/userevents/:id").get(function (req, res) {
     });
 });
 
-// This section will help you get a single record by id
+// This section will help you get a single event by id
 eventRoutes.route("/event/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { eventId: req.params.id };
@@ -47,7 +49,7 @@ eventRoutes.route("/event/:id").get(function (req, res) {
   });
 });
 
-// This section will help you create a new record.
+// This section will help you create a new event
 eventRoutes.route("/form/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   console.log(req.body);
@@ -70,7 +72,7 @@ eventRoutes.route("/form/add").post(function (req, response) {
   });
 });
 
-// This section will help you update a record by id.
+// This section will help you update a  event by id
 eventRoutes.route("/form/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { eventId: req.params.id };

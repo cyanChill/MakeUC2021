@@ -82,7 +82,13 @@ const EventForm = ({ eventInfo }) => {
   }
 
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit} action="/">
+    <Form
+      noValidate
+      validated={validated}
+      onSubmit={handleSubmit}
+      action="http://localhost:5000/"
+      method="post"
+    >
       <h1>{!eventInfo ? "Create an Event" : "Update Event"}</h1>
       <Form.Group className="mb-3" controlId="eventName">
         <Form.Label>Event Name</Form.Label>
